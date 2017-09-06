@@ -1,0 +1,40 @@
+﻿<Window x:Class="WorkShiftTimer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WorkShiftTimer"
+        mc:Ignorable="d"
+        Title="Timer" Height="250" Width="250" Icon="clock.ico" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style x:Key="pbarCircularStyle" TargetType="{x:Type ProgressBar}">
+            <Setter Property="Foreground" Value="#0623B1"/>
+            <Setter Property="Maximum" Value="100"/>
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ProgressBar}">
+                        <Grid x:Name="TemplateRoot" SnapsToDevicePixels="true">
+                            <local:CircularProgress Stroke="{TemplateBinding Foreground}"
+                                                    Value="{TemplateBinding Value}"
+                                                    Height="{TemplateBinding Height}"
+                                                    Width="{TemplateBinding Width}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <local:CircularProgress x:Name="totalCircularProgress" Value="100" Height="120" Width="120" HorizontalAlignment="Center" VerticalAlignment="Center" Stroke="#FF4794EB"/>
+        <local:CircularProgress x:Name="hourCircularProgress" Value="100" Height="90" Width="90" HorizontalAlignment="Center" VerticalAlignment="Center" Stroke="#FF2962A3"/>
+        <local:CircularProgress x:Name="minuteCircularProgress" Value="100" Height="60" Width="60" HorizontalAlignment="Center" VerticalAlignment="Center" Stroke="#FF52657A"/>
+
+        <Label x:Name="timerLabel" Content="00:00" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" Margin="10,0,10,10" VerticalAlignment="Center" Height="259" Width="272" FontSize="66.667" FontFamily="Consolas" Foreground="Black"/>
+        <Label x:Name="breakLabel" Content="Break" HorizontalContentAlignment="Center"  HorizontalAlignment="Left" Margin="10,159,0,0" VerticalAlignment="Top" Width="50"/>
+        <TextBox x:Name="breakTimeTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="20" Margin="10,0,0,10" TextWrapping="Wrap" Text="13:30" VerticalAlignment="Bottom" Width="50" TextChanged="TextBox_TextChanged"/>
+        <Label x:Name="endLabel" Content="End" HorizontalContentAlignment="Center"  HorizontalAlignment="Right" Margin="0,159,10,0" VerticalAlignment="Top" Width="50"/>
+        <TextBox x:Name="endTimeTextBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" Height="20" Margin="0,0,10,10" TextWrapping="Wrap" Text="17:30" VerticalAlignment="Bottom" Width="50" TextChanged="TextBox_TextChanged"/>
+    </Grid>
+</Window>
